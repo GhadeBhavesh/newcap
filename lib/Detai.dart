@@ -19,6 +19,7 @@ class _DetailState extends State<Detail> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(title: Text("LungCare") ,
         leading: Icon(Icons.health_and_safety),
         elevation: 10,
@@ -27,7 +28,7 @@ class _DetailState extends State<Detail> {
         children:[ Column(
               children: [
                 SizedBox(height: 40),
-                Image.asset("assets/1.jpg", height: 120,),
+                Image.asset("assets/hu4.png", height: 120,),
                 SizedBox(height: 50,),
                    Padding(
                    padding: const EdgeInsets.all(16.0),

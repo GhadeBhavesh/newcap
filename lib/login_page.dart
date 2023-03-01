@@ -80,7 +80,7 @@ _isObsure = !_isObsure;
                     SizedBox(height: 60,
                     width: double.infinity,
                    child: OutlinedButton.icon(
-                      icon: const Image(image: AssetImage("assets/googe.png"),),
+                      icon: const Image(image: AssetImage("assets/google.png"),),
                       label: const Text("Sign in with Google",style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.black)),
                       onPressed: (){
                         

@@ -10,24 +10,61 @@ class Wellcome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Image(image: AssetImage("assets/ui.png")),
-          Row(
-            children: [
-              OutlinedButton(onPressed: () {
-              
-          Navigator.push(context, MaterialPageRoute(builder: (context) => login_page()));
-              }, child: Text("Login"),),
-              ElevatedButton(onPressed: () {
- Navigator.push(context, MaterialPageRoute(builder: (context) => SignInPage()));
-              }, child: Text("SignUp")),
-            ],
-          )
-        ],
-      ),
-    ));
+      backgroundColor: Colors.white,
+        body:  Center(
+          child: Column(
+          children: [
+            SizedBox(height: 20,),
+            Text("Wellcome", style: TextStyle(
+              fontSize: 30,
+                color: Colors.pink,
+              fontWeight: FontWeight.w500
+            ),),
+            SizedBox(height: 10,),
+            Text("We are here for you", style: TextStyle(
+              fontSize: 30,
+              color: Colors.pink,
+              fontWeight: FontWeight.w500
+            ),),
+            SizedBox(height: 20,),
+            Image(image: AssetImage("assets/hu3.png"),height: 250),
+            SizedBox(height: 30,),
+                Container(
+                  width: 200,
+                  height: 35,
+                  child: ElevatedButton(onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => login_page()));
+                  }, child: Text("Login"),
+                  style:ElevatedButton.styleFrom(
+                  elevation: 10,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30)
+              ),
+primary: Colors.pink
+                  ),
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Container(
+                  width: 200,
+                  height: 35,
+                  child: ElevatedButton(onPressed: () {
+ Navigator.push(context, MaterialPageRoute(builder: (context) => SignInPage()
+ )
+ );
+                  }, child: Text("Sign In"),
+                  style:ElevatedButton.styleFrom(
+                  elevation: 10,
+                  
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30)
+              ),
+primary: Colors.pink
+                  )),
+                ),
+              ],
+            ),
+        ),
+      );
   }
 }

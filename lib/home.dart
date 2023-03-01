@@ -20,49 +20,51 @@ var primary = Color.fromARGB(255, 227, 14, 53);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox.expand(
-        child: PageView(
-          controller: _pageController,
-          onPageChanged: (index) {
-            setState(() => _currentIndex = index);
-          },
-          children: _pages
+    return SafeArea(
+      child: Scaffold(
+        body: SizedBox.expand(
+          child: PageView(
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() => _currentIndex = index);
+            },
+            children: _pages
+          ),
         ),
-      ),
-      bottomNavigationBar: BottomNavyBar(
-        selectedIndex: _currentIndex,
-        onItemSelected: (index) {
-          setState(() => _currentIndex = index);
-          _pageController.jumpToPage(index);
-        },
-        items: <BottomNavyBarItem>[
-          BottomNavyBarItem(
-            activeColor: primary,
-            inactiveColor: Colors.black,
-            title: Text('Home'),
-            icon: Icon(Icons.home)
-          ),
-          BottomNavyBarItem(
-            activeColor: primary,
-            inactiveColor: Colors.black,
-            title: Text('Doctor'),
-            icon: Icon(Icons.medical_services_rounded)
-          ),
-         
-          BottomNavyBarItem(
-            activeColor: primary,
-            inactiveColor: Colors.black,
-            title: Text('Predection'),
-            icon: Icon(Icons.event_note_rounded)
-          ),
-          BottomNavyBarItem(
-            activeColor: primary,
-            inactiveColor: Colors.black,
-            title: Text('Account'),
-            icon: Icon(Icons.manage_accounts_rounded)
-          ),
-        ],
+        bottomNavigationBar: BottomNavyBar(
+          selectedIndex: _currentIndex,
+          onItemSelected: (index) {
+            setState(() => _currentIndex = index);
+            _pageController.jumpToPage(index);
+          },
+          items: <BottomNavyBarItem>[
+            BottomNavyBarItem(
+              activeColor: primary,
+              inactiveColor: Colors.black,
+              title: Text('Home'),
+              icon: Icon(Icons.home)
+            ),
+            BottomNavyBarItem(
+              activeColor: primary,
+              inactiveColor: Colors.black,
+              title: Text('Doctor'),
+              icon: Icon(Icons.medical_services_rounded)
+            ),
+           
+            BottomNavyBarItem(
+              activeColor: primary,
+              inactiveColor: Colors.black,
+              title: Text('Predection'),
+              icon: Icon(Icons.event_note_rounded)
+            ),
+            BottomNavyBarItem(
+              activeColor: primary,
+              inactiveColor: Colors.black,
+              title: Text('Account'),
+              icon: Icon(Icons.manage_accounts_rounded)
+            ),
+          ],
+        ),
       ),
     );
   }

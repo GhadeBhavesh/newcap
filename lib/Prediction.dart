@@ -37,7 +37,7 @@ class _PredictState extends State<Predict> {
                   getgall();
    },
           child:  Container(
-            height: 30,
+            height: 40,
             width: 200,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
@@ -58,7 +58,7 @@ class _PredictState extends State<Predict> {
                   getcam();
    },
           child:  Container(
-            height: 30,
+            height: 40,
             width: 200,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),

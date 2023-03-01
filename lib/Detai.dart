@@ -16,9 +16,7 @@ class _DetailState extends State<Detail> {
  final controller = PageController();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(title: Text("LungCare") ,
         leading: Icon(Icons.health_and_safety),
@@ -53,11 +51,14 @@ class _DetailState extends State<Detail> {
               ),
                  ), 
                 Container(
+                  height: 59,
+                  width: 200,
                   child: ElevatedButton(onPressed: (){
                        Navigator.push(context, MaterialPageRoute(builder: (context) => Predict()));
                     }, child: const Text("Start Predict"), style: ElevatedButton.styleFrom(
                       primary: Colors.pink,
                       elevation: 5,
+                      
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40)
                       )
@@ -66,6 +67,6 @@ class _DetailState extends State<Detail> {
               
         ]),
 ]      ),
-    ));
+    );
   }
 }

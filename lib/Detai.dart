@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:newcap/Account.dart';
 import 'package:newcap/Prediction.dart';
+import 'package:newcap/authentication_repository.dart';
 import 'package:newcap/colors.dart';
 import 'package:newcap/home.dart';
 import 'package:newcap/main_button.dart';
@@ -22,6 +23,9 @@ var _currentIndex;
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(title: Text("LungCare") ,
+        actions: [IconButton(onPressed: (){
+          AuthenticationRepository.instance.logout();
+        }, icon: Icon(Icons.logout_outlined))],
         leading: Icon(Icons.health_and_safety),
         elevation: 10,
         backgroundColor: Colors.pink,),

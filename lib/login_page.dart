@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
 import 'package:newcap/home.dart';
+import 'package:get/get.dart';
 import 'package:newcap/sign_in.dart';
+import 'package:newcap/signup_controller.dart';
 import 'package:newcap/space.dart';
 
 
@@ -16,7 +20,8 @@ class _login_pageState extends State<login_page> {
 
   bool _isObsure= true;
   bool pass = true;
-    TextEditingController userPass = TextEditingController();
+    final controller = Get.put(SignUpController());
+     final _formKey = GlobalKey<FormState>();
   Color pinki = Colors.pink;
   @override
   Widget build(BuildContext context) {
@@ -28,11 +33,14 @@ class _login_pageState extends State<login_page> {
               padding: const EdgeInsets.all(36),
               child: Column(
                 children: [
-                 Form(child: Column(
+                 Form(
+                  key: _formKey,
+                  child: Column(
                   children: [
                     SizedBox(height: 40,),
                     Image.asset("assets/hu1.png", height: 200,),
                     TextFormField(
+                      controller: controller.userEmail,
                       decoration: const InputDecoration(
                         prefixIcon: const Icon(Icons.person_outline_outlined),
                         labelText: "Email",
@@ -42,8 +50,9 @@ class _login_pageState extends State<login_page> {
                     ),
                     const SizedBox(height: 20,),
                     TextFormField(
+                       controller: controller.userPass,
                        obscureText: pass ? !_isObsure: false,
-                    controller: userPass,
+              
                       decoration: InputDecoration(
                         suffixIcon: pass ? IconButton(onPressed: (){
                       setState((){
@@ -68,7 +77,7 @@ class _login_pageState extends State<login_page> {
                       width: double.infinity,
                       height: 40,
                       child: ElevatedButton(onPressed: (){
-                         Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                           SignUpController.instance.login(controller.userEmail.text.trim(),controller.userPass.text.trim());
                       }, child: const Text("login"), style: ElevatedButton.styleFrom(
                         primary: Colors.pink,
                         elevation: 5,

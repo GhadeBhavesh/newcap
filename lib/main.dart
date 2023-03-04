@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newcap/authentication_repository.dart';
 import 'package:newcap/firebase_options.dart';
+import 'package:newcap/home.dart';
 import 'package:newcap/wellcome.dart';
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'lungCare',
       debugShowCheckedModeBanner: false,
-      home: showHome ? Wellcome() : CircularProgressIndicator(),
+      home: showHome ? Wellcome() : HomePage(),
     );
   }
 }

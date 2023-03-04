@@ -1,5 +1,7 @@
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:newcap/Account.dart';
 import 'package:newcap/Prediction.dart';
 import 'package:newcap/colors.dart';
 import 'package:newcap/home.dart';
@@ -13,7 +15,8 @@ class Detail extends StatefulWidget {
 }
 
 class _DetailState extends State<Detail> {
- final controller = PageController();
+var _currentIndex;
+  final _pageController = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +26,11 @@ class _DetailState extends State<Detail> {
         elevation: 10,
         backgroundColor: Colors.pink,),
       body: PageView(
+         controller: _pageController,
+            onPageChanged: (index) {
+              
+              setState(() => _currentIndex == 2);
+            },
         children:[ Column(
               children: [
                 SizedBox(height: 40),
@@ -53,9 +61,7 @@ class _DetailState extends State<Detail> {
                 Container(
                   height: 59,
                   width: 200,
-                  child: ElevatedButton(onPressed: (){
-                       Navigator.push(context, MaterialPageRoute(builder: (context) => Predict()));
-                    }, child: const Text("Start Predict"), style: ElevatedButton.styleFrom(
+                  child: ElevatedButton(onPressed: () => _pageController.jumpToPage(2), child: const Text("Start Predict"), style: ElevatedButton.styleFrom(
                       primary: Colors.pink,
                       elevation: 5,
                       
@@ -63,9 +69,8 @@ class _DetailState extends State<Detail> {
                         borderRadius: BorderRadius.circular(40)
                       )
                     ),)
-                ) 
-              
-        ]),
+                ) ,
+               ]),
 ]      ),
     );
   }

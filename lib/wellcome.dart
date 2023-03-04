@@ -15,7 +15,8 @@ class Wellcome extends StatelessWidget {
           body:  Center(
             child: Column(
             children: [
-              SizedBox(height: 150,),
+              
+              SizedBox(height: 140,),
               Text("Wellcome", style: TextStyle(
                 fontSize: 30,
                   color: Colors.pink,

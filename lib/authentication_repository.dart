@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:newcap/colors.dart';
 import 'package:newcap/home.dart';
 import 'package:newcap/signup_email_password_fail.dart';
 import 'package:newcap/wellcome.dart';
@@ -33,13 +35,21 @@ class AuthenticationRepository extends GetxController {
           : Get.to(() => const Wellcome());
           
     } on FirebaseAuthException catch (e) {
-      final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
-      print('FIREBASE AUTH EXCEPTION- ${ex.message}');
-      throw ex;
-    } catch (_) {
-      const ex = SignUpWithEmailAndPasswordFailure();
-      print('EXCEPTION - ${ex.message}');
-      throw ex;
+    Get.snackbar("About user", "User message",
+    
+    backgroundColor: Colors.pink,
+    snackPosition: SnackPosition.BOTTOM,
+    titleText: Text("Account creation failed",
+    style: TextStyle(
+      color: Colors.white 
+    ),),
+    messageText: Text(
+      e.toString(),
+      style: TextStyle(
+        color: Colors.white
+      ),
+    )
+    );
     }
   }
    Future<void> signInWithEmailAndPassword(
@@ -48,8 +58,24 @@ class AuthenticationRepository extends GetxController {
       await _auth.signInWithEmailAndPassword(
           email: userEmail, password: userPass);
     
-    }  on FirebaseAuthException catch (e) {}
-    catch (_) {}
+    }  on FirebaseAuthException catch (e) {
+       Get.snackbar("About Login", "Login message",
+    
+    backgroundColor: Colors.pink,
+    snackPosition: SnackPosition.BOTTOM,
+    titleText: Text("Login failed",
+    style: TextStyle(
+      color: Colors.white 
+    ),),
+    messageText: Text(
+      e.toString(),
+      style: TextStyle(
+        color: Colors.white
+      ),
+    )
+    );
+    }
+    
 
  
 }

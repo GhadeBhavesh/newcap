@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newcap/home.dart';
 import 'package:newcap/login_page.dart';
 import 'package:newcap/signup_controller.dart';
@@ -15,7 +16,25 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   bool _isObsure= true;
   bool pass = true;
-
+  RegExp Reqemail = RegExp(r"(?=.*[a-z])");
+bool validateEmail(String email){
+  String _Email = email.trim();
+  if (Reqemail.hasMatch(_Email)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+final GoogleSignIn _googleSignIn = GoogleSignIn();
+  RegExp Reqpass = RegExp(r"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)");
+bool validatePassword(String passord){
+  String _pass = passord.trim();
+  if (Reqpass.hasMatch(_pass)) {
+    return true;
+  } else {
+    return false;
+  }
+}
   @override
   Widget build(BuildContext context) {
      final controller = Get.put(SignUpController());
@@ -34,6 +53,16 @@ class _SignInPageState extends State<SignInPage> {
                   children: [
                     Image.asset("assets/hu1.png", height: 200,),
                      TextFormField(
+                      onChanged: (value1) {
+                        _formKey.currentState!.validate();
+                      },
+                      validator: (value1) {
+                        if (value1!.isEmpty) {
+                          return "Please Enter UserName";
+                        } else {
+                          return null;
+                        }
+                      },
                       controller: controller.userName,
                       decoration: const InputDecoration(
                         prefixIcon: const Icon(Icons.person_outline_outlined),
@@ -44,6 +73,22 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     SizedBox(height: 20,),
                     TextFormField(
+                       onChanged: (value2) {
+                        _formKey.currentState!.validate();
+                      },
+                      validator: (value2) {
+                        if (value2!.isEmpty) {
+                          return "Please Enter Email Address";
+                        } else {
+                          bool resEmail = validateEmail(value2);
+                          if (resEmail) {
+                          return null;
+                          }
+                          else {
+                            return 'Email must contain special character';
+                          }
+                        }
+                      },
                       controller: controller.userEmail,
                       decoration: const InputDecoration(
                         prefixIcon: const Icon(Icons.email_outlined),
@@ -54,6 +99,16 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     SizedBox(height: 20,),
                     TextFormField(
+                       onChanged: (value3) {
+                        _formKey.currentState!.validate();
+                      },
+                      validator: (value3) {
+                        if (value3!.isEmpty) {
+                          return "Please Enter Mobile No";
+                        } else {
+                          return null;
+                        }
+                      },
                       controller: controller.phoneNo,
                       decoration: const InputDecoration(
                         prefixIcon: const Icon(Icons.phone_android_outlined),
@@ -64,6 +119,22 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     const SizedBox(height: 20,),
                     TextFormField(
+                       onChanged: (value4) {
+                        _formKey.currentState!.validate();
+                      },
+                      validator: (value4) {
+                        if (value4!.isEmpty) {
+                          return "Please Enter Password";
+                        } else {
+                          bool respass = validatePassword(value4);
+                          if (respass) {
+                          return null;
+                          }
+                          else {
+                            return 'Password must contain special,Number & Capital character';
+                          }
+                        }
+                      },
                        obscureText: pass ? !_isObsure: false,
                     controller: controller.userPass,
                       decoration: InputDecoration(
@@ -107,7 +178,11 @@ class _SignInPageState extends State<SignInPage> {
                         icon: const Image(image: AssetImage("assets/google.png"),),
                         label: const Text("Sign in with Google",style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.black)),
                         onPressed: (){
-                          
+                          _googleSignIn.signIn().then((value) {
+                            String userName = value!.displayName!;
+                            String profilePicture = value.photoUrl!;
+                            print(userName);
+                          });
                         }, )
                  ),
                  const SizedBox(height: 20,),
